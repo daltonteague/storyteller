@@ -1,4 +1,3 @@
-from django.shortcuts import render
 from .models import User, World, Book, Chapter
 from .serializers import UserSerializer, WorldSerializer, BookSerializer, ChapterSerializer
 from rest_framework import viewsets
@@ -21,3 +20,4 @@ class BookListCreate(viewsets.ModelViewSet):
 class ChapterListCreate(viewsets.ModelViewSet):
     queryset = Chapter.objects.all()
     serializer_class = ChapterSerializer
+

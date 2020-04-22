@@ -4,7 +4,7 @@ from .models import User, World, Book, Chapter
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ('id', 'username', 'email', 'password', 'profile_pic',
+        fields = ('id', 'username', 'email', 'profile_pic',
                         'bio', 'join_date')
 
 class WorldSerializer(serializers.ModelSerializer):

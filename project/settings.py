@@ -15,6 +15,8 @@ import os
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media').replace('\\', '/')
+MEDIA_URL = '/media/'
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
@@ -37,10 +39,25 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+
+    'corsheaders',
+
     'app.apps.AppConfig',
+
     'rest_framework',
+    'rest_auth',
+    'rest_auth.registration',
+    'rest_framework.authtoken',
     'frontend',
 ]
+
+SITE_ID = 1
+ACCOUNT_CONFIRM_EMAIL_ON_GET = True # E-mail address is automatically confirmed by a GET request
+ACCOUNT_EMAIL_VERIFICATION = 'none' # Allow logins with an unverified e-mail address
 
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
@@ -123,6 +140,6 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-CORS_ORIGIN_WHITELIST = (
-         'localhost:3000/'
-     )
+CORS_ORIGIN_WHITELIST = [
+    "http://localhost:3000",
+]

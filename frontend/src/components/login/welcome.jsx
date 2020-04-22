@@ -1,37 +1,42 @@
 import React from "react"
-import { Login } from "./login";
-import { Register } from "./register";
+import Login from "./login";
+import Register from "./register";
+import logo from "../../media/images/logo.png"
 
 export class Welcome extends React.Component {
 
-    constructor(props) {
-        super(props);
+  constructor(props) {
+    super(props);
 
-        this.state = {
-          isLoginActive: true,
-        }
+    this.state = {
+      isLoginActive: true,
     }
-
-    changeState() {
-      const {isLoginActive} = this.state;
-      
-      this.setState(prevState => ({ isLoginActive: !prevState.isLoginActive }))
   }
 
-    render() {
-        const { isLoginActive } = this.state;
+  changeState() {
+    const {isLoginActive} = this.state;
+    
+    this.setState(prevState => ({ isLoginActive: !prevState.isLoginActive }))
+  }
 
-        return (
-            <div className="login"> 
-                <div className="container">
-                    {isLoginActive && <Login containerRef={(ref) => this.current = ref}/> }
-                    {!isLoginActive && <Register containerRef={(ref) => this.current = ref}/> }
-                </div>
-                <Buttons active = {isLoginActive} containerRef={ref => this.buttons = ref} onClick={this.changeState.bind(this)}/>
+  render() {
+    const { isLoginActive } = this.state;
+
+    return (
+      <div>
+        <div className="image">
+            <img src={logo} />
+        </div>
+          <div className="login"> 
+            <div className="container">
+                {isLoginActive && <Login containerRef={(ref) => this.current = ref}/> }
+                {!isLoginActive && <Register containerRef={(ref) => this.current = ref}/> }
             </div>
-        );
-    }
-
+            <Buttons active = {isLoginActive} containerRef={ref => this.buttons = ref} onClick={this.changeState.bind(this)}/>
+          </div>
+        </div>
+    );
+  }
 }
 
 const Buttons = props => {
@@ -59,7 +64,4 @@ const Buttons = props => {
     </div>
   )
 }
-
-
-
-
+export default Welcome
